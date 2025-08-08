@@ -30,7 +30,6 @@ project_root/
 
 ```
 
-
 ```mermaid
 graph TD
     A[entrypoints FastAPI / CLI] -->|calls| B[usecases TaskUseCase]
@@ -71,4 +70,63 @@ graph TD
     B4 --> C1
 
     C1 --> D1
+```
+
+
+
+# Cli
+
+`create-task`
+```bash
+python entrypoints/cli_main.py create-task \
+  --title "اولیه" --description "تسک تست"
+```
+
+
+
+```bash
+python entrypoints/cli_main.py create-task \
+  --title "تحلیل بازار" \
+  --description "تحلیل تکنیکال در اکسل" \
+  --assignee-id 5 \
+  --assignee-name "علی اکبری" \
+  --assignee-email "ali@example.com"
+```
+---
+
+`update-task`
+```bash
+python entrypoints/cli_main.py update-task \
+  --id 1 \
+  --title "ویرایش‌شده" \
+  --description "توضیح جدید" \
+  --assignee-id 10 \
+  --assignee-name "محمدی" \
+  --assignee-email "mohammadi@example.com"
+```
+
+---
+`update-task`
+
+```bash
+python3 entrypoints/cli_main.py list-tasks
+```
+
+
+# api
+`Address`
+
+>> http://127.0.0.1:8000/docs
+
+```json
+{
+  "title": "تحویل فاز اول",
+  "description": "مربوط به طراحی لایه usecase",
+  "assignee": {
+    "id": 4,
+    "name": "رضا پژوهنده",
+    "email": "reza@domain.com"
+  }
+}
+
 ```

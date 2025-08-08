@@ -14,12 +14,15 @@ def main():
 
     subparsers = parser.add_subparsers(dest='command')
 
+    # Create Task
     create_parser = subparsers.add_parser("create-task", help="ایجاد تسک جدید")
     create_parser.add_argument("--title", required=True, help="عنوان تسک")
     create_parser.add_argument("--description", required=True, help="توضیحات تسک")
     create_parser.add_argument("--assignee-id", type=int, help="ID مسئول تسک")
     create_parser.add_argument("--assignee-name", type=str, help="نام مسئول")
     create_parser.add_argument("--assignee-email", type=str, help="ایمیل مسئول")
+    
+    # List Tasks
     list_parser = subparsers.add_parser("list-tasks", help="نمایش همه تسک‌ها")
     
     delete_parser = subparsers.add_parser("delete-task", help="حذف تسک") 
@@ -27,7 +30,7 @@ def main():
 
 
 
-    # اضافه کردن پارسر برای ویرایش تسک
+    # Update Task
     update_parser = subparsers.add_parser("update-task", help="ویرایش تسک موجود")
     update_parser.add_argument("--id", type=int, required=True, help="شناسه تسک")
     update_parser.add_argument("--title", required=True, help="عنوان جدید")
@@ -39,7 +42,7 @@ def main():
     args = parser.parse_args()
 
     # وابستگی‌ها
-    repo = FileTaskRepository("tasks.json")  # باید در گام بعد پیاده‌سازی شود
+    repo = FileTaskRepository("tasks.json")  
     usecase = TaskUseCase(repo)
     handler = TaskHandler(usecase)
 
